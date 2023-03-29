@@ -47,20 +47,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        rbDollarEuro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               mv.habilitar(rbDollarEuro,rbEuroDollar,etDollar,etEuro);
+            }
+        });
+        rbEuroDollar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mv.habilitar(rbDollarEuro,rbEuroDollar,etDollar,etEuro);
+            }
+        });
+
 
         //Escuchar al boton convertir
         btConvertir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(rbDollarEuro.isChecked()==true){
-                  
-                    mv.convertirDollarEuro(etDollar.getText().toString());
-                }else if(rbEuroDollar.isChecked()==true){
-
-                    mv.convertirEuroDollar(etEuro.getText().toString());
-                }else {
-                    Toast.makeText(getApplicationContext(), "Debe seleccionar una opcion", Toast.LENGTH_SHORT).show();
-                }
+                mv.convertirMoneda(etEuro.getText().toString(),etDollar.getText().toString(),rbDollarEuro, rbEuroDollar );
             }
         });
 

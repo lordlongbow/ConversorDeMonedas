@@ -2,6 +2,8 @@ package com.example.conversordemoneda;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,6 +30,7 @@ public class MainActivityViewModel extends AndroidViewModel {
         return Convertido;
     }
 
+
     public void convertirDollarEuro(String dollares){
         double valorEuro = 0.93;
         if(dollares.isEmpty() || dollares=="" || dollares==" "){
@@ -52,4 +55,23 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     }
 
+    public void convertirMoneda(String euros, String dolares, RadioButton rbDolarEuro, RadioButton rbEuroDolar ){
+            if(rbDolarEuro.isChecked()){
+                 convertirDollarEuro(dolares);
+            } else{
+                 convertirEuroDollar(euros);
+            }
+    }
+
+    public void habilitar(RadioButton rbDolarEuro, RadioButton rbEuroDolar, EditText etdolar, EditText etEuro){
+        if(rbDolarEuro.isChecked()){
+           etEuro.setEnabled(false);
+           etdolar.setEnabled(true);
+        } else if(rbEuroDolar.isChecked()){
+            etEuro.setEnabled(true);
+            etdolar.setEnabled(false);
+        }else{
+            Toast.makeText(contexto,mensaje,Toast.LENGTH_SHORT).show();
+        }
+    }
 }
